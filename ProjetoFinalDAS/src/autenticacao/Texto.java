@@ -13,29 +13,29 @@ String lixo=null;
 	}
 
 	
-	public boolean cadastrar(String nome, String senha)
+	public void cadastrar(String nome, String senha)
 	{
 		lixo=nome;
 		lixo=senha;
 		
-		return false;
+		 
 	}
 
 	
-	public boolean alterar(String nome, String senha, String novoNome,
+	public void alterar(String nome, String senha, String novoNome,
 			String novaSenha) 
 	{
 		lixo=nome;
 		lixo=senha;
-		return false;
+		 
 	}
 
 	
-	public boolean excluir(String nome, String senha) 
+	public void excluir(String nome, String senha) 
 	{
 		lixo=nome;
 		lixo=senha;
-		return false;
+		 
 	}
 
 }
