@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * 
  */
 import com.thoughtworks.xstream.*;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -27,11 +28,27 @@ public class Xml extends Autenticacao{
 
         public Xml()
         {
+        try{
            xml=new XStream();
      
            usuarios= new ArrayList<Pessoa>();
-           usuarios=recuperaLista();
-            
+          
+           File arquivo1=new File("c:\\temp\\xml.xml");
+                      
+           if (arquivo1.exists()==false)
+           {
+                   
+                         Pessoa Default=new Pessoa("default", "123");
+                         usuarios.add(Default);
+                         xml.toXML(usuarios , new FileOutputStream(arquivo1));
+                         usuarios=recuperaLista();
+                        
+           }else  usuarios=recuperaLista();
+            }catch (FileNotFoundException ex) 
+                            {
+                                ex.printStackTrace();
+                                Logger.getLogger(Xml.class.getName()).log(Level.SEVERE, null, ex);
+                            }
         }
         
 	public boolean autenticar(String nome, String senha)
@@ -50,29 +67,59 @@ public class Xml extends Autenticacao{
    /*
     * Colocar uma pre condição
     */
-	public void cadastrar(String nome, String senha)
+     
+	public boolean cadastrar(String nome, String senha)
 	{
-               // ArrayList<Pessoa> usuarios=new ArrayList<Pessoa>();
+               
+            if(existe(nome, senha)==true) return false; 
+            else{
                 
-		Pessoa pessoa= new Pessoa(nome, senha);
-                usuarios.add(pessoa);
-                salvaLista(usuarios);
-              
+                    Pessoa pessoa= new Pessoa(nome, senha);
+                    usuarios.add(pessoa);
+                    salvaLista(usuarios);
+                    return true;
+                }
 	}
-	public void alterar(String nome, String senha, String novoNome,
+	public boolean alterar(String nome, String senha, String novoNome,
 			String novaSenha) 
 	{
-		lixo=nome;
-		lixo=senha;
+		if(existe(nome, senha)==true)
+                {
+                    for(Pessoa usuario:usuarios)
+                    {
+                        if(usuario.getNome().equals(nome)&& usuario.getSenha().equals(senha))
+                        {
+                            usuario.setNome(novoNome);
+                            usuario.setSenha(novaSenha);
+                            break;
+                        }
+                        
+                    }
+                    salvaLista(usuarios);
+                    return true;
+                }
 		 
+                return false;
 	}
 
 	
-	public void excluir(String nome, String senha) 
+	public boolean excluir(String nome, String senha) 
 	{
-		lixo=nome;
-		lixo=senha;
-		 
+		if(existe(nome,senha)==true)
+                {   
+                    for(Pessoa usuario:usuarios)
+                    {
+                        if(usuario.getNome().equals(nome)&&usuario.getSenha().equals(senha))
+                        {
+                            usuarios.remove(usuario);
+                            break;
+                        }
+                    }
+                    salvaLista(usuarios);
+                            return true;
+                }
+                
+                return false;
 	}
         
         
@@ -81,7 +128,7 @@ public ArrayList <Pessoa> recuperaLista()
             
             ArrayList <Pessoa> lista=null;
         try {
-            lista=(ArrayList)this.xml.fromXML(new FileInputStream("c:\\Temp\\xml.xml"));
+                lista=(ArrayList)this.xml.fromXML(new FileInputStream("c:\\Temp\\xml.xml"));
        
             } catch (FileNotFoundException ex) 
             {
@@ -101,6 +148,16 @@ public ArrayList <Pessoa> recuperaLista()
             ex.printStackTrace();
             Logger.getLogger(Xml.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }
+        public boolean existe(String nome, String senha)
+        {
+            for (Pessoa usuario : usuarios)
+            {
+              if(usuario.getNome().equals(nome) && usuario.getSenha().equals(senha))
+                  return true;
+            }
+            
+            return false;
         }
 	
 }
