@@ -30,19 +30,37 @@ public class XmlClassTest {
     public static void tearDownClass() {
     }
     
-    @Before
-    public void setUp() 
-    {
-         
-    }
-    Xml xml=new Xml();
+   
+    
+   
+    
     
     @Test
     public void testaCadastro()
     {
-        xml.cadastrar("ramon","123");
-        xml.cadastrar("Yuri", "123");
-        xml.cadastrar("Andre", "Dedinho");
+        Xml xml=new Xml();
+        assertFalse(xml.cadastrar("Nayane","123"));
+        assertFalse(xml.cadastrar("Renan","123"));
+       
+        
+    }
+    @Test 
+    public void testAutenticacao()
+    {
+        Xml xml=new Xml();
+        assertTrue(xml.autenticar("Nayane", "123"));
+    }
+    @Test 
+    public void testeExcluir()
+    {
+        Xml xml=new Xml();
+        assertTrue(xml.excluir("Ramon", "123"));
+    }
+    @Test
+    public void testeAlterar()
+    {
+        Xml xml=new Xml();
+        assertTrue(xml.alterar("Nayane", "123","Nayane Cruz","1234"));
     }
     
 }
