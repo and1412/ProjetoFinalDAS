@@ -13,19 +13,39 @@ import java.util.ArrayList;
  */
 public class Chat extends Servico {
 
+    private ArrayList <Msg> chat;
     @Override
     public ArrayList<Msg> iniciarServico() {
-        throw new UnsupportedOperationException("Not supported yet.");
+                chat = new ArrayList<Msg>();
+                return chat;
     }
 
     @Override
-    public boolean enviarMsg(Pessoa emissor, Pessoa receptor, String texto, ArrayList<Msg> Mensagem) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean enviarMsg(Pessoa emissor, Pessoa receptor, String texto, ArrayList<Msg> servico) {
+         Msg mensagem = new Msg(receptor, emissor, texto);
+            if(servico.add(mensagem)) 
+            {
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
     }
 
     @Override
-    public ArrayList<Msg> lerMsg(Pessoa usuario, ArrayList<Msg> Mensagem) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public ArrayList<Msg> lerMsg(Pessoa usuario,Pessoa receptor, ArrayList<Msg> servico) {
+        ArrayList<Msg> mensagens_chat= new ArrayList<Msg>();
+                
+                for(Msg msg : servico)
+                {
+                    if(msg.getReceptor().equals(usuario) && msg.getEmissor().equals(msg) )
+                    {
+                        mensagens_chat.add(msg);
+                    }    
+                }
+                
+                return mensagens_chat;
     }
     
 }

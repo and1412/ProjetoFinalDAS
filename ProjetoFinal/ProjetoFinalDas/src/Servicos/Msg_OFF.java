@@ -13,19 +13,41 @@ import java.util.ArrayList;
  */
 public class Msg_OFF extends Servico{
 
+    private ArrayList <Msg> mensagens_off;
+    
     @Override
     public ArrayList<Msg> iniciarServico() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        mensagens_off = new ArrayList<Msg>();
+        return mensagens_off;
     }
 
     @Override
-    public boolean enviarMsg(Pessoa emissor, Pessoa receptor, String texto, ArrayList<Msg> Mensagem) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean enviarMsg(Pessoa emissor, Pessoa receptor, String texto, ArrayList<Msg> servico) {
+            Msg mensagem = new Msg(receptor, emissor, texto);
+            if(servico.add(mensagem)) 
+            {
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
     }
 
     @Override
-    public boolean lerMsg(Pessoa usuario, ArrayList<Msg> Mensagem) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public ArrayList<Msg> lerMsg(Pessoa usuario,Pessoa receptor, ArrayList<Msg> servico) {
+        ArrayList<Msg> mensagens_usuario= new ArrayList<Msg>();
+                
+                for(Msg msg : servico)
+                {
+                    if(msg.getReceptor().equals(usuario))
+                    {
+                        mensagens_usuario.add(msg);
+                    }    
+                }
+                
+                return mensagens_usuario;
+		
     }
     
 }

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public abstract class Servico {
    
 	public abstract ArrayList<Msg> iniciarServico();
-	public abstract boolean enviarMsg(Pessoa emissor, Pessoa receptor,String texto,ArrayList<Msg> Mensagem);
-	public abstract  ArrayList<Msg> lerMsg(Pessoa usuario,ArrayList<Msg> Mensagem);
+	public abstract boolean enviarMsg(Pessoa emissor, Pessoa receptor,String texto,ArrayList<Msg> mensagens);
+	public abstract  ArrayList<Msg> lerMsg(Pessoa usuario,Pessoa receptor,ArrayList<Msg> mensagem);
     
 }
