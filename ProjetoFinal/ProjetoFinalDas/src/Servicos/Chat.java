@@ -24,7 +24,7 @@ public class Chat extends Servico {
     }
 
     @Override
-    public boolean lerMsg(Pessoa usuario, ArrayList<Msg> Mensagem) {
+    public ArrayList<Msg> lerMsg(Pessoa usuario, ArrayList<Msg> Mensagem) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
