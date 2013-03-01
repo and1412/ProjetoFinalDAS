@@ -1,4 +1,4 @@
-package Autenticacao;
+package autenticacao;
 
 import java.util.ArrayList;
 /*
@@ -18,12 +18,14 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 public class Xml extends Autenticacao{
 
        
         private ArrayList <Pessoa> usuarios;
 	String lixo;
         private XStream xml;
+        private Xml estancia;
         
 
         public Xml()
@@ -159,5 +161,6 @@ public ArrayList <Pessoa> recuperaLista()
             
             return false;
         }
-	
+        
+        
 }
