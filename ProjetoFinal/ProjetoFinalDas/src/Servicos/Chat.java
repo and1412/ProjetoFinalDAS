@@ -50,5 +50,13 @@ public class Chat extends Servico {
                 
                 return mensagens_chat;
     }
+
+    @Override
+    public void imprimir(ArrayList<Msg> mensagem) {
+        for(Msg msg : mensagem)
+                {
+                       System.out.println("Emissor: " + msg.emissor.getNome()+ "Receptor: "+msg.receptor.getNome()+"Mensagem: " +msg.getTexto());
+                }
+    }
     
 }

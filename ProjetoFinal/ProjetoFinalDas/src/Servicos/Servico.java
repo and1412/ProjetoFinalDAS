@@ -29,5 +29,5 @@ public abstract class Servico {
 	public abstract ArrayList<Msg> iniciarServico();
 	public abstract boolean enviarMsg(Pessoa emissor, Pessoa receptor,String texto,ArrayList<Msg> mensagens);
 	public abstract  ArrayList<Msg> lerMsg(Pessoa usuario,Pessoa receptor,ArrayList<Msg> mensagem);
-    
+        public abstract void imprimir(ArrayList<Msg> mensagem);
 }

@@ -51,5 +51,13 @@ public class Msg_OFF extends Servico{
                 return mensagens_usuario;
 		
     }
+
+    @Override
+    public void imprimir(ArrayList<Msg> mensagem) {
+                for(Msg msg : mensagem)
+                {
+                       System.out.println("Emissor: " + msg.emissor.getNome()+ "Mensagem: " +msg.getTexto());
+                }
+    }
     
 }
