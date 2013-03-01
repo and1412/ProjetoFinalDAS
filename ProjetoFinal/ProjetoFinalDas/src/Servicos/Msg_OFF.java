@@ -13,11 +13,13 @@ import java.util.ArrayList;
  */
 public class Msg_OFF extends Servico{
 
-    private ArrayList <Msg> mensagens_off;
+    public Msg_OFF() {
+    }
+    
     
     @Override
     public ArrayList<Msg> iniciarServico() {
-        mensagens_off = new ArrayList<Msg>();
+        ArrayList <Msg> mensagens_off = new ArrayList<Msg>();
         return mensagens_off;
     }
 

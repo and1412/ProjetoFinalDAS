@@ -13,11 +13,14 @@ import java.util.ArrayList;
  */
 public class Chat extends Servico {
 
-    private ArrayList <Msg> chat;
+    public Chat() {
+    }
+
+    
     @Override
     public ArrayList<Msg> iniciarServico() {
-                chat = new ArrayList<Msg>();
-                return chat;
+        ArrayList<Msg> chat = new ArrayList<Msg>();
+        return chat;
     }
 
     @Override
